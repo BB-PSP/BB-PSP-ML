@@ -1,2 +1,2 @@
 # BB-PSP-ML
-Baseball Prediction Stats Player : Machine Learning
+Baseball - Player Stats Prediction : Machine Learning
