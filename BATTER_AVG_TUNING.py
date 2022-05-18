@@ -21,7 +21,7 @@ pd.set_option('display.max_seq_items', None)
 # HBP 몸에 맞는 볼
 # WP 폭투                                                                                                     
 
-mlb_pitchingstats = pd.read_csv(filepath_or_buffer="C:/Users/mink9/OneDrive/바탕 화면/졸업프로젝트/BATTERS_TOTAL_MLB.csv",
+mlb_pitchingstats = pd.read_csv(filepath_or_buffer="C:/Users/mink9/OneDrive/바탕 화면/졸업프로젝트/code/BB-PSP-ML/DATA/BATTERS_TOTAL_MLB.csv",
                         encoding="utf_8",sep=",")
 #'Age','G','AB','PA','H','1B','2B','3B','HR','R','RBI','BB','IBB','SO','HBP','SF','SH','GDP','SB','CS','AVG','OBP','SLG','OPS','ISO','BABIP'
 batting_info = mlb_pitchingstats[['Age','G','AB','PA','HR','R','RBI','BB','IBB','SO','HBP','SF','SH','GDP','SB','CS','AVG','OBP','SLG']]
