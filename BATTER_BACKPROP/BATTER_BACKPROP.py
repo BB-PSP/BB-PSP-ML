@@ -12,9 +12,9 @@ pd.set_option('display.max_seq_items', None)                                    
 mlb_battingstats = pd.read_csv(filepath_or_buffer="./DATA/BATTERS_TOTAL_MLB.csv",
                         encoding="utf_8",sep=",")
 #'Age','G','AB','PA','H','1B','2B','3B','HR','R','RBI','BB','IBB','SO','HBP','SF','SH','GDP','SB','CS','AVG','OBP','SLG','OPS','ISO','BABIP'
-batting_info = mlb_battingstats[['Age','G','AB','PA','HR','R','RBI','BB','IBB','SO','HBP','SF','SH','GDP','SB','CS','AVG','OBP','SLG']]
+batting_info = mlb_battingstats[['Age','G','AB','R','RBI','BB','SO','HBP','SF','SH','SB','CS','AVG','OBP']]
 
-b_x = batting_info[['Age','G','AB','PA','HR','R','RBI','BB','IBB','SO','HBP','SF','SH','GDP','SB','CS','OBP','SLG']]
+b_x = batting_info[['Age','G','AB','R','RBI','BB','SO','HBP','SF','SH','SB','CS','OBP']]
 b_y = batting_info[['AVG']]
 
 b_x_train, b_x_test, b_y_train, b_y_test = train_test_split(b_x, b_y, train_size=0.8,test_size=0.2)
@@ -37,7 +37,7 @@ b_weights = b_model.coef_                                                       
 
 
 b_csv = pd.read_csv("./DATA/BATTERS_TOTAL_KBO.csv")                                                              #KBO 타자 데이터
-b_kbo_x = b_csv[['Age','G','AB','PA','HR','R','RBI','BB','IBB','SO','HBP','SF','SH','GDP','SB','CS','OBP','SLG']]
+b_kbo_x = b_csv[['Age','G','AB','R','RBI','BB','SO','HBP','SF','SH','SB','CS','OBP']]
 b_kbo_y = b_csv[['AVG']]
 
 b_kbo_predict = b_model.predict(b_kbo_x)
