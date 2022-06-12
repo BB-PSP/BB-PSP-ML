@@ -13,9 +13,14 @@ pd.set_option('display.max_seq_items', None)                                    
 mlb_pitchingstats = pd.read_csv(filepath_or_buffer="./DATA/PITCHERS_TOTAL_MLB.csv",
                         encoding="utf_8",sep=",")
 
-pitching_info = mlb_pitchingstats[['Age','W','L','ERA','G','SV','BS','HLD','IP','TBF','H','R','ER','HR','BB','IBB','HBP','WP','SO','WHIP','BABIP','LOB_PCT','FIP']]
+pitching_info = mlb_pitchingstats[['Age','W','L','ERA','G','SV','HLD','IP','TBF','WHIP','BABIP','LOB_PCT']]
 
-b_x = pitching_info[['Age','W','L','ERA','SV','BS','HLD','IP','TBF','H','R','ER','HR','BB','IBB','HBP','WP','SO','WHIP','BABIP','LOB_PCT','FIP']]
+#선발
+#pitching_info = pitching_info[(pitching_info['SV'] == 0) & (pitching_info['HLD'] == 0)]
+#구원
+pitching_info = pitching_info[(pitching_info['SV'] != 0) | (pitching_info['HLD'] != 0)]
+
+b_x = pitching_info[['Age','W','L','ERA','SV','HLD','IP','TBF','WHIP','BABIP','LOB_PCT']]
 b_y = pitching_info[['G']]
 
 b_x_train, b_x_test, b_y_train, b_y_test = train_test_split(b_x, b_y, train_size=0.8,test_size=0.2)
@@ -37,8 +42,15 @@ print(b_model.score(b_x_test,b_y_test))                                         
 b_weights = b_model.coef_                                                                                   #이 모델의 가중치 값들
 
 
-b_csv = pd.read_csv("./DATA/PITCHERS_TOTAL_KBO.csv")                                                              #KBO 타자 데이터
-b_kbo_x = b_csv[['Age','W','L','ERA','SV','BS','HLD','IP','TBF','H','R','ER','HR','BB','IBB','HBP','WP','SO','WHIP','BABIP','LOB_PCT','FIP']]
+b_csv = pd.read_csv("./DATA/PITCHERS_TOTAL_KBO.csv")         
+
+#선발
+#b_csv = b_csv[b_csv['IP'] >= 100]
+#구원
+b_csv = b_csv[b_csv['IP'] < 100]
+
+                                                     #KBO 타자 데이터
+b_kbo_x = b_csv[['Age','W','L','ERA','SV','HLD','IP','TBF','WHIP','BABIP','LOB_PCT']]
 b_kbo_y = b_csv[['G']]
 
 b_kbo_predict = b_model.predict(b_kbo_x)
