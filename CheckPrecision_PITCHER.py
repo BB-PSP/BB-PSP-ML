@@ -22,13 +22,13 @@ pd.set_option('display.max_seq_items', None)
 # HBP 몸에 맞는 볼
 # WP 폭투                                                                                                     
 
-mlb_pitchingstats = pd.read_csv(filepath_or_buffer="./DATA/PITCHERS_TOTAL_MLB.csv",
+mlb_pitchingstats = pd.read_csv(filepath_or_buffer="./DATA/PITCHERS_TOTAL_KBO.csv",
                         encoding="utf_8",sep=",")
 #'Age','W','L','ERA','G','GS','CG','ShO','SV','BS','HLD','IP','TBF','H','R','ER','HR','BB','IBB','HBP','WP','BK','SO','K_9','BB_9','K_BB','H_9','HR_9','WHIP','BABIP','LOB_PCT','FIP'
-batting_info = mlb_pitchingstats[['Age','W','L','ERA','G','GS','CG','ShO','SV','BS','HLD','IP','TBF','H','R','HR','BB','IBB','HBP','SO','WHIP','BABIP','LOB_PCT']]
+pitching_info = mlb_pitchingstats[['Age','W','L','G','IP','TBF','ER','HR','BB','SO','K_9','BB_9','H_9','HR_9','WHIP','LOB_PCT']]
 
-b_x = batting_info[['Age','W','L','G','GS','CG','ShO','SV','BS','HLD','IP','TBF','H','R','HR','BB','IBB','HBP','SO','WHIP','BABIP','LOB_PCT']]
-b_y = batting_info[['ERA']]
+b_x = pitching_info[['Age','W','L','G','IP','TBF','HR','BB','SO','K_9','BB_9','H_9','HR_9','WHIP','LOB_PCT']]
+b_y = pitching_info[['ER']]
 
 b_x_train, b_x_test, b_y_train, b_y_test = train_test_split(b_x, b_y, train_size=0.7,test_size=0.3)
 
