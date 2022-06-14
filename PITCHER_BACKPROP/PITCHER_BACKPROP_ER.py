@@ -16,9 +16,9 @@ mlb_pitchingstats = pd.read_csv(filepath_or_buffer="./DATA/PITCHERS_TOTAL_MLB.cs
 pitching_info = mlb_pitchingstats[['Age','W','L','G','SV','HLD','IP','TBF','ER','HR','BB','SO','K_9','BB_9','H_9','HR_9','WHIP','LOB_PCT']]
 
 #선발
-#pitching_info = pitching_info[(pitching_info['SV'] == 0) & (pitching_info['HLD'] == 0)]
+pitching_info = pitching_info[(pitching_info['SV'] == 0) & (pitching_info['HLD'] == 0)]
 #구원
-pitching_info = pitching_info[(pitching_info['SV'] != 0) | (pitching_info['HLD'] != 0)]
+#pitching_info = pitching_info[(pitching_info['SV'] != 0) | (pitching_info['HLD'] != 0)]
 
 b_x = pitching_info[['Age','W','L','G','IP','TBF','HR','BB','SO','K_9','BB_9','H_9','HR_9','WHIP','LOB_PCT']]
 b_y = pitching_info[['ER']]
@@ -44,9 +44,9 @@ b_weights = b_model.coef_                                                       
 
 b_csv = pd.read_csv("./DATA/PITCHERS_TOTAL_KBO.csv")    
 #선발
-#b_csv = b_csv[b_csv['IP'] >= 100]
+b_csv = b_csv[b_csv['IP'] >= 100]
 #구원
-b_csv = b_csv[b_csv['IP'] < 100] 
+#b_csv = b_csv[b_csv['IP'] < 100] 
                                                          #KBO 타자 데이터
 b_kbo_x = b_csv[['Age','W','L','G','IP','TBF','HR','BB','SO','K_9','BB_9','H_9','HR_9','WHIP','LOB_PCT']]
 b_kbo_y = b_csv[['ER']]
