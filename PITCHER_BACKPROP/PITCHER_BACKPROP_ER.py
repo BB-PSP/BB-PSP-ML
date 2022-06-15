@@ -47,7 +47,8 @@ b_csv = pd.read_csv("./DATA/PITCHERS_TOTAL_KBO.csv")
 b_csv = b_csv[b_csv['IP'] >= 100]
 #구원
 #b_csv = b_csv[b_csv['IP'] < 100] 
-                                                         #KBO 타자 데이터
+
+#KBO 타자 데이터
 b_kbo_x = b_csv[['Age','W','L','G','IP','TBF','HR','BB','SO','K_9','BB_9','H_9','HR_9','WHIP','LOB_PCT']]
 b_kbo_y = b_csv[['ER']]
 
