@@ -53,21 +53,21 @@ b_kbo_x = b_csv[['Age','W','L','G','IP','TBF','HR','BB','SO','K_9','BB_9','H_9',
 b_kbo_y = b_csv[['ER']]
 
 b_kbo_predict = b_model.predict(b_kbo_x)
-plt.scatter(b_kbo_y, b_kbo_predict, alpha=0.4)                                                               #그래프로 표현
+plt.scatter(b_kbo_y, b_kbo_predict, alpha=0.4)                                 #그래프로 표현
 plt.xlabel("Real")
 plt.ylabel("Predicted KBO")
 plt.title("MULTIPLE LINEAR REGRESSION")
 plt.show()
 
-print(b_model.score(b_kbo_x,b_kbo_y))                                                                        #현재 MLB모델로 예측한 KBO 선수의 성적 예측 정확도
+print(b_model.score(b_kbo_x,b_kbo_y))                                          #현재 MLB모델로 예측한 KBO 선수의 성적 예측 정확도
 
 
-kbo_data = b_csv                                                                                             #행렬을 사용해서 계산할 것이므로 torch 이용 
+kbo_data = b_csv                                                               #행렬을 사용해서 계산할 것이므로 torch 이용 
 x_data = torch.FloatTensor(np.array(b_kbo_x))
 y_data = torch.FloatTensor(np.array(b_kbo_y))                                      
 
 epochs = 30000
-                                                                                                           # 가중치값은 MLB에서 만든 것을 사
+                                                                               # 가중치값은 MLB에서 만든 것을 사
 targets_data = b_weights.T
 targets_df = pd.DataFrame(data=targets_data)
 targets_df.columns = ['targets']
@@ -75,7 +75,7 @@ W = torch.Tensor(np.array(b_weights).T)
 W = W.requires_grad_(True)
 b = torch.zeros(1, requires_grad= True)
 
-optimizer = optim.SGD([W,b],lr=1e-6)                                                                        #lr = learnig rate인데 값 적절하게 작게 해야됨 너무 크면 오류남 
+optimizer = optim.SGD([W,b],lr=1e-6)                                           #lr = learnig rate인데 값 적절하게 작게 해야됨 너무 크면 오류남 
 
 
 for epoch in range(epochs + 1):
