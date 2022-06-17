@@ -25,21 +25,21 @@ b_y = pitching_info[['ER']]
 
 b_x_train, b_x_test, b_y_train, b_y_test = train_test_split(b_x, b_y, train_size=0.8,test_size=0.2)
 
-b_model = LinearRegression()                                                                                  #다중선형회귀 모델 생성
+b_model = LinearRegression()                                                   #다중선형회귀 모델 생성
 b_model.fit(b_x_train, b_y_train)
 
 b_y_predict = b_model.predict(b_x_test)
 
 
-plt.scatter(b_y_test, b_y_predict, alpha=0.4)                                                               #그래프로 표현
+plt.scatter(b_y_test, b_y_predict, alpha=0.4)                                  #그래프로 표현
 plt.xlabel("Real")
 plt.ylabel("Predicted")
 plt.title("MULTIPLE LINEAR REGRESSION")
 plt.show()
                                                                                                           
-print(b_model.score(b_x_test,b_y_test))                                                                     #이 모델의 정확도
+print(b_model.score(b_x_test,b_y_test))                                        #이 모델의 정확도
 
-b_weights = b_model.coef_                                                                                   #이 모델의 가중치 값들
+b_weights = b_model.coef_                                                      #이 모델의 가중치 값들
 
 
 b_csv = pd.read_csv("./DATA/PITCHERS_TOTAL_KBO.csv")    
